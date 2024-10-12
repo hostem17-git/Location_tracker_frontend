@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Map from "./components/Map.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="flex w-full h-svh max-h-svh justify-center items-center flex-col outline-dotted">
+        <div className="flex w-3/4 min-w-96 justify-around items-center flex-col">
+          <div className="flex w-full">
+            <div className="flex items-center justify-center flex-1 bg-purple-300">
+              <h1 className="m-2">Session Id</h1>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6 cursor-pointer"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+              </svg>
+            </div>
+            <button className="bg-green-500 p-2 rounded text-white hover:outline hover:outline-green-500  hover:bg-white hover:text-green-500 hover:font-semibold">
+              Start broadcast
+            </button>
+          </div>
+          <Map />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
