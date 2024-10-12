@@ -3,8 +3,8 @@ import "leaflet/dist/leaflet.css";
 
 function Map() {
   return (
-    <div className="h-64 w-full relative">
-      <div className="h-64 w-full bg-teal-300 MAPContainer">
+    <div className="h-full w-full relative flex-1">
+      <div className="h-full w-full bg-teal-300 MAPContainer">
         <MapContainer
           center={[25.918309, 82.001597]}
           zoom={17}
