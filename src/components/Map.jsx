@@ -1,7 +1,11 @@
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useEffect } from "react";
 
-function Map({ currentPosition }) {
+function Map({ currentPosition, trackedPosition }) {
+  useEffect(() => {
+    console.log("in child", trackedPosition);
+  }, [trackedPosition]);
   return (
     <div className="h-full w-full relative flex-1">
       <div className="h-full w-full bg-teal-300 MAPContainer">
@@ -15,10 +19,11 @@ function Map({ currentPosition }) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[25.91519, 81.998198]} />
+          {trackedPosition && <Marker position={trackedPosition} />}
           {currentPosition && <Marker position={currentPosition} />}
         </MapContainer>
       </div>
+      <div>{`${trackedPosition}`}</div>
     </div>
   );
 }

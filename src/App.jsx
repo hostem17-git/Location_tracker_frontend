@@ -18,11 +18,9 @@ function App() {
 
   const [socket, setSocket] = useState();
   const [message, setMessage] = useState();
-  const [sessions, setSessions] = useState([
-    { sessionId: 1 },
-    { sessionId: 2 },
-  ]);
+  const [sessions, setSessions] = useState([]);
   const [currentPosition, setCurrentPosition] = useState();
+  const [trackedPosition, setTrackedPosition] = useState();
   const [currentSession, setCurrentSession] = useState({ sessionId: null });
   const [mySession, setMySession] = useState();
 
@@ -108,7 +106,8 @@ function App() {
         setCurrentPosition(null);
         break;
       case UPDATE_LOCATION:
-        setCurrentPosition([payload.latitude, payload.longitude]);
+        const { latitude, longitude } = data.payload;
+        setTrackedPosition([latitude, longitude]);
         break;
       case LIST_SESSIONS:
         setSessions(null);
@@ -146,9 +145,10 @@ function App() {
     // setSocket(ws);
   }, []);
 
+;
+
   // To update data when selected session changes
   useEffect(() => {
-
     if (currentSession.sessionId) {
       if (!socket) {
         alert("Server connection not ready!");
@@ -177,7 +177,7 @@ function App() {
 
   const test = () => {
     console.log("In test");
-    console.log(sessions);
+    console.log(trackedPosition);
   };
   return (
     <div className="text-xs sm:text-base flex w-full h-svh max-h-svh justify-center items-center flex-col">
@@ -233,7 +233,10 @@ function App() {
           <button onClick={test}>TEST</button>
         </div>
         <div className="flex h-full w-full relative">
-          <Map currentPosition={currentPosition} />
+          <Map
+            currentPosition={currentPosition}
+            trackedPosition={trackedPosition}
+          />
           <div
             className="absolute left-2 bottom-2 z-[1000] locationContainer cursor-pointer"
             onClick={showMyLocation}
